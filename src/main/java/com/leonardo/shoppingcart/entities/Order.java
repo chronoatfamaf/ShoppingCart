@@ -58,6 +58,15 @@ public class Order implements Serializable
         this.items = items;
     }
 
+    public Customer getCustomer()
+    {
+        return customer;
+    }
+    public void setCustomer(Customer customer)
+    {
+        this.customer = customer;
+    }
+
     public Payment getPayment() { return payment; }
     public void setPayment(Payment payment)
     {

@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-public class ProductController {
+public class ProductController extends SiteController
+{
     @Autowired private CatalogService catalogService;
 
     @Override protected String getHeaderTitle()

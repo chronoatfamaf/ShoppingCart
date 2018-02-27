@@ -1,4 +1,86 @@
 package com.leonardo.shoppingcart.controllers;
 
-public class CartController {
+import com.leonardo.shoppingcart.entities.Product;
+import com.leonardo.shoppingcart.entities.site.Cart;
+import com.leonardo.shoppingcart.entities.site.LineItem;
+import com.leonardo.shoppingcart.service.CatalogService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+@Controller
+public class CartController extends SiteController
+{
+    @Autowired
+    private CatalogService catalogService;
+
+    @Override
+    protected String getHeaderTitle()
+    {
+        return "Cart";
+    }
+
+    @RequestMapping(value="/cart", method= RequestMethod.GET)
+    public String showCart(HttpServletRequest request, Model model)
+    {
+        Cart cart = getOrCreateCart(request);
+        model.addAttribute("cart", cart);
+        return "cart";
+    }
+
+    @RequestMapping(value="/cart/items/count", method=RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getCartItemCount(HttpServletRequest request, Model model)
+    {
+        Cart cart = getOrCreateCart(request);
+        int itemCount = cart.getItemCount();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("count", itemCount);
+        return map;
+    }
+
+    @RequestMapping(value="/cart/items", method=RequestMethod.POST)
+    @ResponseBody
+    public void addToCart(@RequestBody Product product, HttpServletRequest request)
+    {
+        Cart cart = getOrCreateCart(request);
+        Product p = catalogService.getProductByPcode(product.getPcode());
+        cart.addItem(p);
+    }
+
+    @RequestMapping(value="/cart/items", method=RequestMethod.PUT)
+    @ResponseBody
+    public void updateCartItem(@RequestBody LineItem item, HttpServletRequest request, HttpServletResponse response)
+    {
+        Cart cart = getOrCreateCart(request);
+        if(item.getQuantity() <= 0){
+            String pcode = item.getProduct().getPcode();
+            cart.removeItem(pcode);
+        } else {
+            cart.updateItemQuantity(item.getProduct(), item.getQuantity());
+        }
+    }
+
+    @RequestMapping(value="/cart/items/{sku}", method=RequestMethod.DELETE)
+    @ResponseBody
+    public void removeCartItem(@PathVariable("sku") String pcode, HttpServletRequest request)
+    {
+        Cart cart = getOrCreateCart(request);
+        cart.removeItem(pcode);
+    }
+
+    @RequestMapping(value="/cart", method=RequestMethod.DELETE)
+    @ResponseBody
+    public void clearCart(HttpServletRequest request)
+    {
+        Cart cart = getOrCreateCart(request);
+        cart.setItems(new ArrayList<LineItem>());
+    }
 }

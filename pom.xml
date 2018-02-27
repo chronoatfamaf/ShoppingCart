@@ -5,11 +5,11 @@
 
 	<groupId>com.leonardo</groupId>
 	<artifactId>shopping-cart</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>shopping-cart</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Shopping cart TP for Globant Bootcamp</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -52,6 +52,21 @@
 		<dependency>
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.2.4.RELEASE</version>
 		</dependency>
 	</dependencies>
 

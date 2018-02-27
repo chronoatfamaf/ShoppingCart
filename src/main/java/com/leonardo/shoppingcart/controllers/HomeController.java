@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
-public class HomeController
+public class HomeController extends SiteController
 {
     @Autowired private CatalogService catalogService;
 
