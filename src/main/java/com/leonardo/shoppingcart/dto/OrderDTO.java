@@ -25,7 +25,6 @@ public class OrderDTO implements Serializable
     @NotEmpty(message="LastName is required")
     private String billingLastName;
 
-
     public String getFirstName()
     {
         return firstName;
@@ -50,7 +49,5 @@ public class OrderDTO implements Serializable
     {
         this.emailId = emailId;
     }
-
-
 
 }

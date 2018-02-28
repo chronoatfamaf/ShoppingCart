@@ -68,9 +68,9 @@ public class CartController extends SiteController
         }
     }
 
-    @RequestMapping(value="/cart/items/{sku}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/cart/items/{pcode}", method=RequestMethod.DELETE)
     @ResponseBody
-    public void removeCartItem(@PathVariable("sku") String pcode, HttpServletRequest request)
+    public void removeCartItem(@PathVariable("pcode") String pcode, HttpServletRequest request)
     {
         Cart cart = getOrCreateCart(request);
         cart.removeItem(pcode);

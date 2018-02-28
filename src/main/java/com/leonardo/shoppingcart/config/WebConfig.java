@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
@@ -33,6 +34,20 @@ public class WebConfig extends WebMvcConfigurerAdapter
         LocalValidatorFactoryBean factory = new LocalValidatorFactoryBean();
         factory.setValidationMessageSource(messageSource);
         return factory;
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(
+                "/fonts/",
+                "/img/**",
+                "/css/**",
+                "/js/**")
+                .addResourceLocations(
+                        "classpath:/static/fonts/",
+                        "classpath:/static/img/",
+                        "classpath:/static/css/",
+                        "classpath:/static/js/");
     }
 
     @Override
@@ -72,7 +87,6 @@ public class WebConfig extends WebMvcConfigurerAdapter
                 context.addConstraint(securityConstraint);
             }
         };
-
         tomcat.addAdditionalTomcatConnectors(initiateHttpConnector());
         return tomcat;
     }

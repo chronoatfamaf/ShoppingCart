@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public abstract class SiteController {
 
-    @Autowired
-    protected MessageSource messageSource;
+    @Autowired protected MessageSource messageSource;
 
     protected abstract String getHeaderTitle();
 
@@ -45,8 +44,6 @@ public abstract class SiteController {
         if (principal instanceof AuthenticatedUser) {
             return ((AuthenticatedUser) principal);
         }
-        // principal object is either null or represents anonymous user -
-        // neither of which our domain User object can represent - so return null
         return null;
     }
 

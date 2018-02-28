@@ -63,7 +63,7 @@ public class CatalogService {
         Product persistedProduct = getProductByPcode(product.getName());
         if(persistedProduct != null)
         {
-            throw new SCException("Product SKU "+product.getPcode()+" already exist");
+            throw new SCException("Product Code "+product.getPcode()+" already exist");
         }
         return productRepository.save(product);
     }

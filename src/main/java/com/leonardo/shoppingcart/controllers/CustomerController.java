@@ -21,8 +21,7 @@ import java.util.List;
 @Controller
 public class CustomerController extends SiteController
 {
-    @Autowired
-    private CustomerService customerService;
+    @Autowired private CustomerService customerService;
     @Autowired private CustomerValidator customerValidator;
     @Autowired protected PasswordEncoder passwordEncoder;
 
@@ -55,7 +54,6 @@ public class CustomerController extends SiteController
         redirectAttributes.addFlashAttribute("info", "Customer created successfully");
         return "redirect:/login";
     }
-
 
     @RequestMapping(value="/myAccount", method=RequestMethod.GET)
     protected String myAccount(Model model)
