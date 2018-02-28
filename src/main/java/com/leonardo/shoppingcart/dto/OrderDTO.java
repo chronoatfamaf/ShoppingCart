@@ -19,12 +19,6 @@ public class OrderDTO implements Serializable
     @Email
     private String emailId;
 
-    @NotEmpty(message="FirstName is required")
-    private String billingFirstName;
-
-    @NotEmpty(message="LastName is required")
-    private String billingLastName;
-
     public String getFirstName()
     {
         return firstName;

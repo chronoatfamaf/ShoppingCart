@@ -16,7 +16,7 @@ public class Cart
 
     public Cart()
     {
-        items = new ArrayList<>();
+        items = new ArrayList<LineItem>();
         customer = new Customer();
         payment = new Payment();
     }
@@ -25,9 +25,8 @@ public class Cart
     {
         for (LineItem lineItem : items)
         {
-            if(lineItem.getProduct().getPCode().equals(product.getPCode())){
+            if(lineItem.getProduct().getCod().equals(product.getCod())){
                 lineItem.setQuantity(lineItem.getQuantity()+1);
-                return;
             }
         }
         LineItem item = new LineItem(product, 1);
@@ -38,19 +37,19 @@ public class Cart
     {
         for (LineItem lineItem : items)
         {
-            if(lineItem.getProduct().getPCode().equals(product.getPCode()))
+            if(lineItem.getProduct().getCod().equals(product.getCod()))
             {
                 lineItem.setQuantity(quantity);
             }
         }
     }
 
-    public void removeItem(String pCode)
+    public void removeItem(String cod)
     {
         LineItem  item = null;
         for (LineItem lineItem : items)
         {
-            if(lineItem.getProduct().getPCode().equals(pCode))
+            if(lineItem.getProduct().getCod().equals(cod))
             {
                 item = lineItem;
                 break;
@@ -79,10 +78,12 @@ public class Cart
     {
         return items;
     }
+
     public void setItems(List<LineItem> items)
     {
         this.items = items;
     }
+
     public BigDecimal getTotalAmount()
     {
         BigDecimal amount = new BigDecimal("0.0");

@@ -4,6 +4,7 @@ import com.leonardo.shoppingcart.entities.Product;
 import com.leonardo.shoppingcart.entities.site.Cart;
 import com.leonardo.shoppingcart.entities.site.LineItem;
 import com.leonardo.shoppingcart.service.CatalogService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +52,7 @@ public class CartController extends SiteController
     public void addToCart(@RequestBody Product product, HttpServletRequest request)
     {
         Cart cart = getOrCreateCart(request);
-        Product p = catalogService.getProductByPCode(product.getPCode());
+        Product p = catalogService.getProductByPCode(product.getCod());
         cart.addItem(p);
     }
 
@@ -61,19 +62,19 @@ public class CartController extends SiteController
     {
         Cart cart = getOrCreateCart(request);
         if (item.getQuantity() <= 0) {
-            String pCode = item.getProduct().getPCode();
+            String pCode = item.getProduct().getCod();
             cart.removeItem(pCode);
         } else {
             cart.updateItemQuantity(item.getProduct(), item.getQuantity());
         }
     }
 
-    @RequestMapping(value="/cart/items/{pCode}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/cart/items/{cod}", method=RequestMethod.DELETE)
     @ResponseBody
-    public void removeCartItem(@PathVariable("pCode") String pCode, HttpServletRequest request)
+    public void removeCartItem(@PathVariable("cod") String cod, HttpServletRequest request)
     {
         Cart cart = getOrCreateCart(request);
-        cart.removeItem(pCode);
+        cart.removeItem(cod);
     }
 
     @RequestMapping(value="/cart", method=RequestMethod.DELETE)
@@ -81,6 +82,6 @@ public class CartController extends SiteController
     public void clearCart(HttpServletRequest request)
     {
         Cart cart = getOrCreateCart(request);
-        cart.setItems(new ArrayList<>());
+        cart.setItems(new ArrayList<LineItem>());
     }
 }

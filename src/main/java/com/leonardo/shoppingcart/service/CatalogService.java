@@ -70,14 +70,14 @@ public class CatalogService
         return productRepository.findOne(id);
     }
 
-    public Product getProductByPCode(String pCode) {
-        return productRepository.findByPCode(pCode);
+    public Product getProductByPCode(String cod) {
+        return productRepository.findByCod(cod);
     }
 
     public Product createProduct(Product product) {
         Product persistedProduct = getProductByPCode(product.getName());
         if(persistedProduct != null){
-            throw new SCException("Product code "+product.getPCode()+" already exist");
+            throw new SCException("Product code "+product.getCod()+" already exist");
         }
         return productRepository.save(product);
     }

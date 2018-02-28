@@ -30,6 +30,7 @@ public class OrderItem implements Serializable
     {
         this.id = id;
     }
+
     public Product getProduct()
     {
         return product;
@@ -47,6 +48,7 @@ public class OrderItem implements Serializable
     {
         this.price = price;
     }
+
     public Order getOrder()
     {
         return order;
@@ -55,6 +57,7 @@ public class OrderItem implements Serializable
     {
         this.order = order;
     }
+
     public int getQuantity()
     {
         return quantity;

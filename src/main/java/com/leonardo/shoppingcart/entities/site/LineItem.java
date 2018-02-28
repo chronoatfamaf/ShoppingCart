@@ -9,7 +9,7 @@ public class LineItem
     private Product product;
     private int quantity;
 
-    public LineItem(Product product, int quantity)
+    LineItem(Product product, int quantity)
     {
         this.product = product;
         this.quantity = quantity;

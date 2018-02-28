@@ -6,6 +6,7 @@ import com.leonardo.shoppingcart.service.CatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.*;
 
@@ -43,5 +44,13 @@ public class HomeController extends SiteController
         }
         model.addAttribute("categories", previewCategories);
         return "home";
+    }
+
+    @RequestMapping("/categories/{name}")
+    public String category(@PathVariable String name, Model model)
+    {
+        Category category = catalogService.getCategoryByName(name);
+        model.addAttribute("category", category);
+        return "category";
     }
 }

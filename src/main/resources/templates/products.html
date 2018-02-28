@@ -18,15 +18,15 @@
                     <div class="single-shop-product">
                         <div class="product-upper">
                         </div>
-                        <h2><a href="#" th:href="@{/products/{pCode}(pCode=${product.pCode})}"
+                        <h2><a href="#" th:href="@{/products/{cod}(cod=${product.cod})}"
                                th:text="${product.name}">Product Name</a></h2>
                         <div class="product-carousel-price">
                             <ins th:text="${product.price}">$9.00</ins>
                         </div>
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_pCode="" data-product_id="70"
+                            <a class="add_to_cart_button" data-quantity="1" data-product_cod="" data-product_id="70"
                                rel="nofollow" href="#"
-                               th:onclick="'javascript:addItemToCart(\'' + ${product.pCode} + '\');'">Add to cart</a>
+                               th:onclick="'javascript:addItemToCart(\'' + ${product.cod} + '\');'">Add to cart</a>
                         </div>
                     </div>
                 </div>

@@ -21,10 +21,10 @@ public class ProductController extends SiteController
         return "Product";
     }
 
-    @RequestMapping("/products/{pcode}")
-    public String product(@PathVariable String pcode, Model model)
+    @RequestMapping("/products/{pCode}")
+    public String product(@PathVariable String pCode, Model model)
     {
-        Product product = catalogService.getProductByPCode(pcode);
+        Product product = catalogService.getProductByPCode(pCode);
         model.addAttribute("product", product);
         return "product";
     }

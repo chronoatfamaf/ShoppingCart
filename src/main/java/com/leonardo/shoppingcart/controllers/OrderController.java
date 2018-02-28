@@ -21,15 +21,17 @@ import java.util.Set;
 @Controller
 public class OrderController extends SiteController
 {
+
     @Autowired private CustomerService customerService;
     @Autowired protected OrderService orderService;
 
-    @Override protected String getHeaderTitle()
+    @Override
+    protected String getHeaderTitle()
     {
         return "Order";
     }
 
-    @RequestMapping(value="/orders", method= RequestMethod.POST)
+    @RequestMapping(value="/orders", method=RequestMethod.POST)
     public String placeOrder(@Valid @ModelAttribute("order") OrderDTO order,
                              BindingResult result, Model model, HttpServletRequest request)
     {

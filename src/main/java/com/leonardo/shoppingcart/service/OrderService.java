@@ -35,6 +35,7 @@ public class OrderService
     public Order updateOrder(Order order)
     {
         Order o = getOrder(order.getOrderNumber());
+        o.setStatus(order.getStatus());
         return orderRepository.save(o);
     }
 

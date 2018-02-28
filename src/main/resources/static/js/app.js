@@ -1,11 +1,4 @@
 jQuery(document).ready(function($){
-
-	/*
-	 $("#MyButton").bind("click", function() {
-		  fHardCodedFunction.apply(this, [someValue]);
-	 });
-	 */
-	//$("#cart-item-count").bind("click", updateCartItemCount);
 	updateCartItemCount();
 });
 
@@ -22,38 +15,28 @@ jQuery(document).ready(function($){
 	    });
 	}
 
-	function addItemToCart(sku)
+	function addItemToCart(cod)
 	{
 		$.ajax ({ 
 	        url: '/cart/items', 
 	        type: "POST", 
 	        dataType: "json",
 	        contentType: "application/json",
-	        data : '{"sku":"'+ sku +'"}"',
+	        data : '{"cod":"'+ cod +'"}"',
 	        complete: function(responseData, status, xhttp){
 	        	updateCartItemCount();
-	        	/*
-	        	$.bootstrapGrowl("Item added to cart", 
-	        					{ type: 'info',
-	        						offset: {
-						    			from: "top",
-						    			amount: 50
-						    		}
-	        					}
-	        	);
-	        	*/
 	        }
 	    }); 
 	}
 
-	function updateCartItemQuantity(sku, quantity)
+	function updateCartItemQuantity(cod, quantity)
 	{
 		$.ajax ({ 
 	        url: '/cart/items', 
 	        type: "PUT", 
 	        dataType: "json",
 	        contentType: "application/json",
-	        data : '{ "product" :{ "sku":"'+ sku +'"},"quantity":"'+quantity+'"}',
+	        data : '{ "product" :{ "cod":"'+ cod +'"},"quantity":"'+quantity+'"}',
 	        complete: function(responseData, status, xhttp){ 
 	        	updateCartItemCount();        	
 	        	location.href = '/cart' 
@@ -61,10 +44,10 @@ jQuery(document).ready(function($){
 	    });
 	}
 
-	function removeItemFromCart(sku)
+	function removeItemFromCart(cod)
 	{
 		$.ajax ({ 
-	        url: '/cart/items/'+sku, 
+	        url: '/cart/items/'+cod,
 	        type: "DELETE", 
 	        dataType: "json",
 	        contentType: "application/json",

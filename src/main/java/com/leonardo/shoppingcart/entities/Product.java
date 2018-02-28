@@ -15,14 +15,14 @@ public class Product implements Serializable
     private Integer id;
 
     @Column(nullable=false, unique=true)
-    private String pCode;
+    private String cod;
 
     @Column(nullable=false)
     private String name;
     private String description;
 
     @Column(nullable=false)
-    private BigDecimal price = new BigDecimal("0.0");
+    private BigDecimal price;
 
     @ManyToOne
     @JoinColumn(name="cat_id")
@@ -37,13 +37,13 @@ public class Product implements Serializable
         this.id = id;
     }
 
-    public String getPCode()
+    public String getCod()
     {
-        return pCode;
+        return cod;
     }
-    public void setPCode(String pCode)
+    public void setCod(String cod)
     {
-        this.pCode = pCode;
+        this.cod = cod;
     }
 
     public String getDescription()

@@ -19,7 +19,7 @@
                         <div class="product-breadcroumb">
                             <a href="" th:href="@{/}">Home</a>
                             <a href="" th:href="@{/categories/{name}(name=${product.category.name})}"><span th:text="${product.category.name}">Category Name</span></a>
-                            <a href="" th:href="@{/products/{pcode}(pcode=${product.pcode})}"><span th:text="${product.name}">ProductName</span></a>
+                            <a href="" th:href="@{/products/{cod}(cod=${product.cod})}"><span th:text="${product.name}">ProductName</span></a>
                         </div>
 
                         <div class="row">
@@ -32,7 +32,7 @@
 
                                     <div>
                                         <button class="add_to_cart_button" type="submit"
-                                                th:onclick="'javascript:addItemToCart(\'' + ${product.pcode} + '\');'">Add to cart</button>
+                                                th:onclick="'javascript:addItemToCart(\'' + ${product.cod} + '\');'">Add to cart</button>
                                     </div>
 
                                     <div class="product-inner-category">

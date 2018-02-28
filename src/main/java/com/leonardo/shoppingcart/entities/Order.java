@@ -30,6 +30,9 @@ public class Order implements Serializable
     @JoinColumn(name="payment_id")
     private Payment payment;
 
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
+
     public Order() { this.items = new HashSet<>(); }
 
     public Integer getId()
@@ -48,6 +51,15 @@ public class Order implements Serializable
     public void setOrderNumber(String orderNumber)
     {
         this.orderNumber = orderNumber;
+    }
+
+    public OrderStatus getStatus()
+    {
+        return status;
+    }
+    public void setStatus(OrderStatus status)
+    {
+        this.status = status;
     }
 
     public Set<OrderItem> getItems()
