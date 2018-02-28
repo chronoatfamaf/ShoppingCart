@@ -17,18 +17,16 @@
                 <div class="col-md-3 col-sm-6" th:each="product : ${products}">
                     <div class="single-shop-product">
                         <div class="product-upper">
-                            <img src="assets/img/products/2.jpg" alt=""
-                                 th:src="@{'/products/images/{id}.jpg'(id=${product.id})}"/>
                         </div>
-                        <h2><a href="#" th:href="@{/products/{pcode}(pcode=${product.pcode})}"
+                        <h2><a href="#" th:href="@{/products/{pCode}(pCode=${product.pCode})}"
                                th:text="${product.name}">Product Name</a></h2>
                         <div class="product-carousel-price">
                             <ins th:text="${product.price}">$9.00</ins>
                         </div>
                         <div class="product-option-shop">
-                            <a class="add_to_cart_button" data-quantity="1" data-product_pcode="" data-product_id="70"
+                            <a class="add_to_cart_button" data-quantity="1" data-product_pCode="" data-product_id="70"
                                rel="nofollow" href="#"
-                               th:onclick="'javascript:addItemToCart(\'' + ${product.pcode} + '\');'">Add to cart</a>
+                               th:onclick="'javascript:addItemToCart(\'' + ${product.pCode} + '\');'">Add to cart</a>
                         </div>
                     </div>
                 </div>

@@ -51,7 +51,7 @@ public class CartController extends SiteController
     public void addToCart(@RequestBody Product product, HttpServletRequest request)
     {
         Cart cart = getOrCreateCart(request);
-        Product p = catalogService.getProductByPcode(product.getPcode());
+        Product p = catalogService.getProductByPCode(product.getPCode());
         cart.addItem(p);
     }
 
@@ -60,20 +60,20 @@ public class CartController extends SiteController
     public void updateCartItem(@RequestBody LineItem item, HttpServletRequest request, HttpServletResponse response)
     {
         Cart cart = getOrCreateCart(request);
-        if(item.getQuantity() <= 0){
-            String pcode = item.getProduct().getPcode();
-            cart.removeItem(pcode);
+        if (item.getQuantity() <= 0) {
+            String pCode = item.getProduct().getPCode();
+            cart.removeItem(pCode);
         } else {
             cart.updateItemQuantity(item.getProduct(), item.getQuantity());
         }
     }
 
-    @RequestMapping(value="/cart/items/{pcode}", method=RequestMethod.DELETE)
+    @RequestMapping(value="/cart/items/{pCode}", method=RequestMethod.DELETE)
     @ResponseBody
-    public void removeCartItem(@PathVariable("pcode") String pcode, HttpServletRequest request)
+    public void removeCartItem(@PathVariable("pCode") String pCode, HttpServletRequest request)
     {
         Cart cart = getOrCreateCart(request);
-        cart.removeItem(pcode);
+        cart.removeItem(pCode);
     }
 
     @RequestMapping(value="/cart", method=RequestMethod.DELETE)
@@ -81,6 +81,6 @@ public class CartController extends SiteController
     public void clearCart(HttpServletRequest request)
     {
         Cart cart = getOrCreateCart(request);
-        cart.setItems(new ArrayList<LineItem>());
+        cart.setItems(new ArrayList<>());
     }
 }

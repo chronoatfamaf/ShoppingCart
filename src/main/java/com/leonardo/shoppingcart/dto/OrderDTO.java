@@ -33,6 +33,7 @@ public class OrderDTO implements Serializable
     {
         this.firstName = firstName;
     }
+
     public String getLastName()
     {
         return lastName;
@@ -41,6 +42,7 @@ public class OrderDTO implements Serializable
     {
         this.lastName = lastName;
     }
+
     public String getEmailId()
     {
         return emailId;

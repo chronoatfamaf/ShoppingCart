@@ -18,8 +18,7 @@ public class OrderService
     public Order createOrder(Order order)
     {
         order.setOrderNumber(String.valueOf(System.currentTimeMillis()));
-        Order savedOrder = orderRepository.save(order);
-        return savedOrder;
+        return orderRepository.save(order);
     }
 
     public Order getOrder(String orderNumber)
@@ -29,15 +28,14 @@ public class OrderService
 
     public List<Order> getAllOrders()
     {
-        Sort sort = new Sort(Sort.Direction.DESC, "createdOn");
+        Sort sort = new Sort(Sort.Direction.DESC, "Id");
         return orderRepository.findAll(sort);
     }
 
     public Order updateOrder(Order order)
     {
         Order o = getOrder(order.getOrderNumber());
-        Order savedOrder = orderRepository.save(o);
-        return savedOrder;
+        return orderRepository.save(o);
     }
 
 }

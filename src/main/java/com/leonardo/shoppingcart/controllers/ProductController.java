@@ -24,7 +24,7 @@ public class ProductController extends SiteController
     @RequestMapping("/products/{pcode}")
     public String product(@PathVariable String pcode, Model model)
     {
-        Product product = catalogService.getProductByPcode(pcode);
+        Product product = catalogService.getProductByPCode(pcode);
         model.addAttribute("product", product);
         return "product";
     }

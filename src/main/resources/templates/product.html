@@ -24,15 +24,6 @@
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <div class="product-images">
-                                    <div class="product-main-img">
-                                        <img src="assets/img/product-2.jpg" alt="" th:src="@{'/products/images/{id}.jpg'(id=${product.id})}"/>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
                                 <div class="product-inner">
                                     <h2 class="product-name" th:text="${product.name}">ProductName</h2>
                                     <div class="product-inner-price">
@@ -47,13 +38,6 @@
                                     <div class="product-inner-category">
                                         <h2>Product Description</h2>
                                         <p th:text="${product.description}">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                            Nam tristique, diam in consequat iaculis, est purus iaculis mauris, imperdiet facilisis
-                                            ante ligula at nulla. Quisque volutpat nulla risus, id maximus ex aliquet ut.
-                                            Suspendisse potenti. Nulla varius lectus id turpis dignissim porta. Quisque magna arcu,
-                                            blandit quis felis vehicula, feugiat gravida diam. Nullam nec turpis ligula.
-                                            Aliquam quis blandit elit, ac sodales nisl. Aliquam eget dolor eget elit malesuada aliquet.
-                                            In varius lorem lorem, semper bibendum lectus lobortis ac.<br/>
                                         </p>
                                     </div>
 

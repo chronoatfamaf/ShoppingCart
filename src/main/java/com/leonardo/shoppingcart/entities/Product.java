@@ -15,7 +15,7 @@ public class Product implements Serializable
     private Integer id;
 
     @Column(nullable=false, unique=true)
-    private String pcode;
+    private String pCode;
 
     @Column(nullable=false)
     private String name;
@@ -37,13 +37,22 @@ public class Product implements Serializable
         this.id = id;
     }
 
-    public String getPcode()
+    public String getPCode()
     {
-        return pcode;
+        return pCode;
     }
-    public void setPcode(String sku)
+    public void setPCode(String pCode)
     {
-        this.pcode = pcode;
+        this.pCode = pCode;
+    }
+
+    public String getDescription()
+    {
+        return description;
+    }
+    public void setDescription(String description)
+    {
+        this.description = description;
     }
 
     public String getName()

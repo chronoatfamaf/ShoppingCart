@@ -3,7 +3,7 @@ package com.leonardo.shoppingcart.service;
 import com.leonardo.shoppingcart.entities.Category;
 import com.leonardo.shoppingcart.entities.Product;
 import com.leonardo.shoppingcart.repository.ProductRepository;
-import com.leonardo.shoppingcart.repository.CatalogRepository;
+import com.leonardo.shoppingcart.repository.CategoryRepository;
 import com.leonardo.shoppingcart.security.SCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,30 +13,35 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CatalogService {
-    @Autowired CatalogRepository catalogRepository;
+public class CatalogService
+{
+    @Autowired CategoryRepository categoryRepository;
     @Autowired ProductRepository productRepository;
 
-    public List<Category> getAllCategories() { return catalogRepository.findAll(); }
+    public List<Category> getAllCategories() {
 
-    public List<Product> getAllProducts() { return productRepository.findAll(); }
+        return categoryRepository.findAll();
+    }
+
+    public List<Product> getAllProducts() {
+
+        return productRepository.findAll();
+    }
 
     public Category getCategoryByName(String name) {
-        return catalogRepository.getByName(name);
+        return categoryRepository.getByName(name);
     }
 
     public Category getCategoryById(Integer id) {
-        return catalogRepository.findOne(id);
+        return categoryRepository.findOne(id);
     }
 
-    public Category createCategory(Category category)
-    {
+    public Category createCategory(Category category) {
         Category persistedCategory = getCategoryByName(category.getName());
-        if(persistedCategory != null)
-        {
+        if(persistedCategory != null){
             throw new SCException("Category "+category.getName()+" already exist");
         }
-        return catalogRepository.save(category);
+        return categoryRepository.save(category);
     }
 
     public Category updateCategory(Category category) {
@@ -47,41 +52,37 @@ public class CatalogService {
         persistedCategory.setDescription(category.getDescription());
         persistedCategory.setDisplayOrder(category.getDisplayOrder());
         persistedCategory.setDisabled(category.isDisabled());
-        return catalogRepository.save(persistedCategory);
+        return categoryRepository.save(persistedCategory);
+    }
+
+    public Product updateProduct(Product product) {
+        Product persistedProduct = getProductById(product.getId());
+        if(persistedProduct == null){
+            throw new SCException("Product "+product.getId()+" doesn't exist");
+        }
+        persistedProduct.setDescription(product.getDescription());
+        persistedProduct.setPrice(product.getPrice());
+        persistedProduct.setCategory(getCategoryById(product.getCategory().getId()));
+        return productRepository.save(persistedProduct);
     }
 
     public Product getProductById(Integer id) {
         return productRepository.findOne(id);
     }
 
-    public Product getProductByPcode(String pcode) {
-        return productRepository.findByPcode(pcode);
+    public Product getProductByPCode(String pCode) {
+        return productRepository.findByPCode(pCode);
     }
 
-    public Product createProduct(Product product)
-    {
-        Product persistedProduct = getProductByPcode(product.getName());
-        if(persistedProduct != null)
-        {
-            throw new SCException("Product Code "+product.getPcode()+" already exist");
+    public Product createProduct(Product product) {
+        Product persistedProduct = getProductByPCode(product.getName());
+        if(persistedProduct != null){
+            throw new SCException("Product code "+product.getPCode()+" already exist");
         }
         return productRepository.save(product);
-    }
-
-    public Product updateProduct(Product product)
-    {
-        Product persistedProduct = getProductById(product.getId());
-        if(persistedProduct == null)
-        {
-            throw new SCException("Product "+product.getId()+" doesn't exist");
-        }
-        persistedProduct.setPrice(product.getPrice());
-        persistedProduct.setCategory(getCategoryById(product.getCategory().getId()));
-        return productRepository.save(persistedProduct);
     }
 
     public List<Product> searchProducts(String query) {
         return productRepository.search("%"+query+"%");
     }
-
 }

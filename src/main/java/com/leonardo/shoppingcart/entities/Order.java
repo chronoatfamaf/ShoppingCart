@@ -2,6 +2,7 @@ package com.leonardo.shoppingcart.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +30,7 @@ public class Order implements Serializable
     @JoinColumn(name="payment_id")
     private Payment payment;
 
-    public Order() { this.items = new HashSet<OrderItem>(); }
+    public Order() { this.items = new HashSet<>(); }
 
     public Integer getId()
     {
@@ -71,5 +72,14 @@ public class Order implements Serializable
     public void setPayment(Payment payment)
     {
         this.payment = payment;
+    }
+
+    public BigDecimal getTotalAmount() {
+        BigDecimal amount = new BigDecimal("0.0");
+        for (OrderItem item : items)
+        {
+            amount = amount.add(item.getSubTotal());
+        }
+        return amount;
     }
 }
