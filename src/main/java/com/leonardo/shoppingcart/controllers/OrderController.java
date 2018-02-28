@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Controller
@@ -46,6 +47,25 @@ public class OrderController extends SiteController
         String email = getCurrentUser().getCustomer().getEmail();
         Customer customer = customerService.getCustomerByEmail(email);
         newOrder.setCustomer(customer);
+        Address address = new Address();
+        address.setAddressLine1(order.getAddressLine1());
+        address.setAddressLine2(order.getAddressLine2());
+        address.setCity(order.getCity());
+        address.setState(order.getState());
+        address.setZipCode(order.getZipCode());
+        address.setCountry(order.getCountry());
+
+        newOrder.setDeliveryAddress(address);
+
+        Address billingAddress = new Address();
+        billingAddress.setAddressLine1(order.getAddressLine1());
+        billingAddress.setAddressLine2(order.getAddressLine2());
+        billingAddress.setCity(order.getCity());
+        billingAddress.setState(order.getState());
+        billingAddress.setZipCode(order.getZipCode());
+        billingAddress.setCountry(order.getCountry());
+
+        newOrder.setBillingAddress(billingAddress);
 
         Set<OrderItem> orderItems = new HashSet<OrderItem>();
         List<LineItem> lineItems = cart.getItems();

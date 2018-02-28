@@ -9,3 +9,8 @@ VALUES
   (2,1,'P1002','Product2','Product2','200.00'),
   (3,1,'P1003','Product3','Product3','300.00')
 ;
+
+INSERT INTO CUSTOMERS (ID, EMAIL, FIRSTNAME, LASTNAME, PASSWORD)
+VALUES
+  (1, 'leo@gmail.com', 'leonardo', 'emanuel', '$2a$10$hKDVYxLefVHV/vtuPhWD3OigtRyOykRLDdUAp80Z1crSoS1lFqaFS')
+;

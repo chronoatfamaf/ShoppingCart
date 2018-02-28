@@ -3,6 +3,7 @@ package com.leonardo.shoppingcart.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,13 @@ public class Order implements Serializable
     @JoinColumn(name="cust_id")
     private Customer customer;
 
+    @JoinColumn(name="delivery_addr_id")
+    private Address deliveryAddress;
+
+    @OneToOne(cascade=CascadeType.PERSIST)
+    @JoinColumn(name="billing_addr_id")
+    private Address billingAddress;
+
     @OneToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name="payment_id")
     private Payment payment;
@@ -33,7 +41,11 @@ public class Order implements Serializable
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    public Order() { this.items = new HashSet<>(); }
+    public Order()
+    {
+        this.items = new HashSet<OrderItem>();
+        this.status = OrderStatus.NEW;
+    }
 
     public Integer getId()
     {
@@ -94,4 +106,18 @@ public class Order implements Serializable
         }
         return amount;
     }
+
+    public Address getDeliveryAddress()
+    {
+        return deliveryAddress;
+    }
+    public void setDeliveryAddress(Address deliveryAddress) { this.deliveryAddress = deliveryAddress; }
+
+    public Address getBillingAddress() {
+        return billingAddress;
+    }
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
+    }
+
 }

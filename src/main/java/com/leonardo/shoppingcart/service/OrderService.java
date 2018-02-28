@@ -26,17 +26,4 @@ public class OrderService
         return orderRepository.findByOrderNumber(orderNumber);
     }
 
-    public List<Order> getAllOrders()
-    {
-        Sort sort = new Sort(Sort.Direction.DESC, "Id");
-        return orderRepository.findAll(sort);
-    }
-
-    public Order updateOrder(Order order)
-    {
-        Order o = getOrder(order.getOrderNumber());
-        o.setStatus(order.getStatus());
-        return orderRepository.save(o);
-    }
-
 }
