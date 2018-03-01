@@ -72,6 +72,10 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>4.2.4.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

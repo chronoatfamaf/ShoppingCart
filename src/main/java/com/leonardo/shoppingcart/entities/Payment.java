@@ -1,14 +1,11 @@
 package com.leonardo.shoppingcart.entities;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "payments")
-public class Payment implements Serializable
-{
-    private static final long serialVersionUID = 1L;
+public class Payment {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
 
     /* Set Variables of Payment Entity */

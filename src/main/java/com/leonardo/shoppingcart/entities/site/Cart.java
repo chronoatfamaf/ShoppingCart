@@ -8,8 +8,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart
-{
+public class Cart {
     private List<LineItem> items;
     private Customer customer;
     private Payment payment;
