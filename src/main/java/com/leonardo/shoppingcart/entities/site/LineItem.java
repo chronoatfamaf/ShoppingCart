@@ -1,9 +1,11 @@
 package com.leonardo.shoppingcart.entities.site;
 
 import com.leonardo.shoppingcart.entities.Product;
+import lombok.Data;
 
 import java.math.BigDecimal;
 
+@Data
 public class LineItem {
 
     private Product product;
@@ -11,24 +13,6 @@ public class LineItem {
 
     LineItem(Product product, int quantity) {
         this.product = product;
-        this.quantity = quantity;
-    }
-
-    public Product getProduct()
-    {
-        return product;
-    }
-    public void setProduct(Product product)
-    {
-        this.product = product;
-    }
-
-    public int getQuantity()
-    {
-        return quantity;
-    }
-    public void setQuantity(int quantity)
-    {
         this.quantity = quantity;
     }
 

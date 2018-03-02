@@ -8,11 +8,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.*;
 
-@Controller
-public class HomeController extends SiteController
-{
+@RestController
+public class HomeController extends SiteController {
     @Autowired private CatalogService catalogService;
 
     @Override protected String getHeaderTitle()
@@ -21,8 +22,7 @@ public class HomeController extends SiteController
     }
 
     @RequestMapping("/home")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         List<Category> previewCategories = new ArrayList<>();
         List<Category> categories = catalogService.getAllCategories();
         for (Category category : categories)
@@ -47,8 +47,7 @@ public class HomeController extends SiteController
     }
 
     @RequestMapping("/categories/{name}")
-    public String category(@PathVariable String name, Model model)
-    {
+    public String category(@PathVariable String name, Model model) {
         Category category = catalogService.getCategoryByName(name);
         model.addAttribute("category", category);
         return "category";
