@@ -1,7 +1,6 @@
 package com.leonardo.shoppingcart.security;
 
 public class SCException extends RuntimeException {
-    private static final long serialVersionUID = 1L;
 
     public SCException() { super(); }
 

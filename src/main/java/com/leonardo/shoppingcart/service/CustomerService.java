@@ -23,14 +23,6 @@ public class CustomerService
         return customerRepository.save(customer);
     }
 
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
-    }
-
-    public Customer getCustomerById(Integer id) {
-        return customerRepository.findOne(id);
-    }
-
     public List<Order> getCustomerOrders(String email) {
         return customerRepository.getCustomerOrders(email);
     }
