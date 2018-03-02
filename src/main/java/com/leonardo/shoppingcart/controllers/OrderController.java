@@ -85,16 +85,14 @@ public class OrderController extends SiteController {
     }
 
     @RequestMapping(value="/orderconfirmation", method=RequestMethod.GET)
-    public String showOrderConfirmation(@RequestParam(value="orderNumber")String orderNumber, Model model)
-    {
+    public String showOrderConfirmation(@RequestParam(value="orderNumber")String orderNumber, Model model) {
         Order order = orderService.getOrder(orderNumber);
         model.addAttribute("order", order);
         return "orderconfirmation";
     }
 
     @RequestMapping(value="/orders/{orderNumber}", method=RequestMethod.GET)
-    public String viewOrder(@PathVariable(value="orderNumber")String orderNumber, Model model)
-    {
+    public String viewOrder(@PathVariable(value="orderNumber")String orderNumber, Model model) {
         Order order = orderService.getOrder(orderNumber);
         model.addAttribute("order", order);
         return "view_order";

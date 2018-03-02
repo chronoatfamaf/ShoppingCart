@@ -1,6 +1,5 @@
 package com.leonardo.shoppingcart.entities;
 
-import com.leonardo.shoppingcart.entities.Address;
 import lombok.Data;
 
 import javax.persistence.*;
