@@ -20,8 +20,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Controller
-public class OrderController extends SiteController
-{
+public class OrderController extends SiteController {
 
     @Autowired private CustomerService customerService;
     @Autowired protected OrderService orderService;
@@ -34,8 +33,7 @@ public class OrderController extends SiteController
 
     @RequestMapping(value="/orders", method=RequestMethod.POST)
     public String placeOrder(@Valid @ModelAttribute("order") OrderDTO order,
-                             BindingResult result, Model model, HttpServletRequest request)
-    {
+                             BindingResult result, Model model, HttpServletRequest request) {
         Cart cart = getOrCreateCart(request);
         if (result.hasErrors()) {
             model.addAttribute("cart", cart);
@@ -69,8 +67,7 @@ public class OrderController extends SiteController
 
         Set<OrderItem> orderItems = new HashSet<OrderItem>();
         List<LineItem> lineItems = cart.getItems();
-        for (LineItem lineItem : lineItems)
-        {
+        for (LineItem lineItem : lineItems) {
             OrderItem item = new OrderItem();
             item.setProduct(lineItem.getProduct());
             item.setQuantity(lineItem.getQuantity());
@@ -80,12 +77,9 @@ public class OrderController extends SiteController
         }
 
         newOrder.setItems(orderItems);
-
         Payment payment = new Payment();
-
         newOrder.setPayment(payment);
         Order savedOrder = orderService.createOrder(newOrder);
-
         request.getSession().removeAttribute("CART_KEY");
         return "redirect:orderconfirmation?orderNumber="+savedOrder.getOrderNumber();
     }

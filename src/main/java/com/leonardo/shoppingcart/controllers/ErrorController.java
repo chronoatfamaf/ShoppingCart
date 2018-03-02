@@ -20,5 +20,7 @@ public class ErrorController extends SiteController
         return viewPrefix+"accessDenied";
     }
 
+    /* Set 404,500 */
+
 }
 
