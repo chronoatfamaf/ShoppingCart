@@ -1,15 +1,19 @@
 package com.leonardo.shoppingcart.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
+@Builder @AllArgsConstructor
 @Entity
 @Table(name="orders")
-@Data
 public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -3,6 +3,7 @@ package com.leonardo.shoppingcart.entities.site;
 import com.leonardo.shoppingcart.entities.Customer;
 import com.leonardo.shoppingcart.entities.Payment;
 import com.leonardo.shoppingcart.entities.Product;
+import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -12,12 +13,12 @@ import java.util.List;
 @Data
 public class Cart {
     private List<LineItem> items;
-    private Customer customer;
+    private Customer.CustomerBuilder customer;
     private Payment payment;
 
     public Cart() {
         items = new ArrayList<LineItem>();
-        customer = new Customer();
+        customer = Customer.builder();
         payment = new Payment();
     }
 

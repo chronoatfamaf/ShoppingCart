@@ -34,7 +34,7 @@ public class CustomerController extends SiteController
 
     @RequestMapping(value="/register", method= RequestMethod.GET)
     protected String registerForm(Model model) {
-        model.addAttribute("customer", new Customer());
+        model.addAttribute("customer", Customer.builder());
         return "register";
     }
 

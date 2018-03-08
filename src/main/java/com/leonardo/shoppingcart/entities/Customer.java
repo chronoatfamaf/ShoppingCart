@@ -1,14 +1,18 @@
 package com.leonardo.shoppingcart.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
+@Data
+@Builder @AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name="customers")
-@Data
 public class Customer {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
