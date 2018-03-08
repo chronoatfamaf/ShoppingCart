@@ -2,6 +2,8 @@ package com.leonardo.shoppingcart.utils;
 
 import com.leonardo.shoppingcart.entities.*;
 
+import java.math.BigDecimal;
+
 public class EntityUtils {
 
     public static Customer createDummyCustomer() {
@@ -14,21 +16,27 @@ public class EntityUtils {
                 .build();
     }
 
-    public static Order createDummyOrder() {
+    public static Order createDummyOrder(Customer customer) {
         return Order.builder()
                 .id(1)
+                .customer(customer)
                 .status(OrderStatus.NEW)
                 .build();
     }
 
-    public static Payment createDummyPayment() {
+    public static Payment createDummyPayment(Order order) {
         return Payment.builder()
                 .id(1)
                 .build();
     }
 
-    public static Product createDummyProduct() {
+    public static Product createDummyProduct(Integer productId, String productCod) {
         return Product.builder()
+                .id(productId)
+                .cod(productCod)
+                .name(productCod)
+                .description("Default")
+                .price(BigDecimal.valueOf(100.00))
                 .build();
     }
 }
