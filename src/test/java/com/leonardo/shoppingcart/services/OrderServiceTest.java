@@ -1,4 +1,4 @@
 package com.leonardo.shoppingcart.services;
 
-public class orderServiceTest {
+public class OrderServiceTest {
 }
