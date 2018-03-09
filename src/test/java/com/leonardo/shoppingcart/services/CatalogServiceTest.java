@@ -37,6 +37,7 @@ public class CatalogServiceTest {
     private Category category_2;
     private Product product_1;
     private Product product_2;
+    private Product product_3;
 
     @Before
     public void create() {
@@ -45,13 +46,14 @@ public class CatalogServiceTest {
         category_2 = EntityUtils.createDummyCategory(2, "category_2", 2);
         product_1 = EntityUtils.createDummyProduct(1,"P2001", category_1);
         product_2 = EntityUtils.createDummyProduct(2,"P2002", category_1 );
+        product_3 = EntityUtils.createDummyProduct(3,"P2003", category_1 );
     }
 
     @Test
     public void getCategoryByNameTest() {
         when(mockCategoryRepository.getByName("category_1")).thenReturn(category_1);
-        verify(mockCategoryRepository,times(1)).getByName("category_1");
         assertEquals(category_1, catalogService.getCategoryByName("category_1"));
+        verify(mockCategoryRepository,times(1)).getByName("category_1");
     }
 
     @Test
@@ -86,6 +88,17 @@ public class CatalogServiceTest {
         when(mockProductRepository.search("%"+query+"%")).thenReturn(productsList);
         List<Product> productsSearch = catalogService.searchProducts(query);
         verify(mockProductRepository, times(1)).search("%"+query+"%");
+        assertFalse(productsSearch.isEmpty());
+        assertEquals(productsList, productsSearch);
+    }
+
+    @Test
+    public void searchProductsByCategoryTest() {
+        List<Product> productsList = new ArrayList<>();
+        productsList.add(product_1);
+        productsList.add(product_3);
+        when(mockProductRepository.findByCategory(category_1)).thenReturn(productsList);
+        List<Product> productsSearch = catalogService.getAllCategoryProducts(category_1);
         assertFalse(productsSearch.isEmpty());
         assertEquals(productsList, productsSearch);
     }

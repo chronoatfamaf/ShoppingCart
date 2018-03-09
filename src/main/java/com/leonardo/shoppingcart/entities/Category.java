@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Data
 @Builder
-@AllArgsConstructor @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="categories")
 public class Category {

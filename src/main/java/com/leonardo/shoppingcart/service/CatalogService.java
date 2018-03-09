@@ -29,4 +29,8 @@ public class CatalogService
     }
 
     public List<Product> searchProducts(String query) { return productRepository.search("%"+query+"%"); }
+
+    public List<Product> getAllCategoryProducts(Category category) {
+        return productRepository.findByCategory(category);
+    }
 }
