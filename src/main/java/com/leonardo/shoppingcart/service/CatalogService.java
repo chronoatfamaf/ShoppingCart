@@ -28,7 +28,5 @@ public class CatalogService
         return productRepository.findByCod(cod);
     }
 
-    public List<Product> searchProducts(String query) {
-        return productRepository.search("%"+query+"%");
-    }
+    public List<Product> searchProducts(String query) { return productRepository.search("%"+query+"%"); }
 }

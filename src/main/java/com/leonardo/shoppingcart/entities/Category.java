@@ -1,14 +1,19 @@
 package com.leonardo.shoppingcart.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@Data
+@Builder
+@AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name="categories")
-@Data
 public class Category {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)

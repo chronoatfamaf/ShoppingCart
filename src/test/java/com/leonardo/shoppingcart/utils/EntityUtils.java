@@ -30,13 +30,25 @@ public class EntityUtils {
                 .build();
     }
 
-    public static Product createDummyProduct(Integer productId, String productCod) {
+    public static Product createDummyProduct(Integer productId, String productCod, Category cat) {
         return Product.builder()
                 .id(productId)
                 .cod(productCod)
-                .name(productCod)
+                .name("Default")
                 .description("Default")
                 .price(BigDecimal.valueOf(100.00))
+                .category(cat)
+                .build();
+    }
+
+    public static Category createDummyCategory(Integer idCat, String catName, Integer dOrder) {
+        return Category.builder()
+                .id(idCat)
+                .name(catName)
+                .disabled(false)
+                .displayOrder(dOrder)
+                .description("Default")
+                .products(null)
                 .build();
     }
 }
