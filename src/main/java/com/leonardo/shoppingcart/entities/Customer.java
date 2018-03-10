@@ -9,10 +9,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 
-@Data
-@Builder @AllArgsConstructor @NoArgsConstructor
 @Entity
 @Table(name="customers")
+@Data
+@Builder @AllArgsConstructor @NoArgsConstructor
 public class Customer {
     @Id @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;

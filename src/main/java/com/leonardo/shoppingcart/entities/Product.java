@@ -1,18 +1,17 @@
 package com.leonardo.shoppingcart.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name="products")
 @Data
 @Builder
 @AllArgsConstructor
-@Entity
-@Table(name="products")
+@NoArgsConstructor
+@EqualsAndHashCode(exclude="category")
 public class Product {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

@@ -10,10 +10,10 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@Builder @AllArgsConstructor
 @Entity
 @Table(name="orders")
+@Data
+@Builder @AllArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

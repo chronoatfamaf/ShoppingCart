@@ -45,7 +45,7 @@ public class OrderController extends SiteController {
         String email = getCurrentUser().getCustomer().getEmail();
         Customer customer = customerService.getCustomerByEmail(email);
         newOrder.setCustomer(customer);
-        Address address = new Address();
+        Address address = Address.builder().build();
         address.setAddressLine1(order.getAddressLine1());
         address.setAddressLine2(order.getAddressLine2());
         address.setCity(order.getCity());
@@ -55,7 +55,7 @@ public class OrderController extends SiteController {
 
         newOrder.setDeliveryAddress(address);
 
-        Address billingAddress = new Address();
+        Address billingAddress = Address.builder().build();
         billingAddress.setAddressLine1(order.getAddressLine1());
         billingAddress.setAddressLine2(order.getAddressLine2());
         billingAddress.setCity(order.getCity());
@@ -65,10 +65,10 @@ public class OrderController extends SiteController {
 
         newOrder.setBillingAddress(billingAddress);
 
-        Set<OrderItem> orderItems = new HashSet<OrderItem>();
+        Set<OrderItem> orderItems = new HashSet<>();
         List<LineItem> lineItems = cart.getItems();
         for (LineItem lineItem : lineItems) {
-            OrderItem item = new OrderItem();
+            OrderItem item = OrderItem.builder().build();
             item.setProduct(lineItem.getProduct());
             item.setQuantity(lineItem.getQuantity());
             item.setPrice(lineItem.getProduct().getPrice());
