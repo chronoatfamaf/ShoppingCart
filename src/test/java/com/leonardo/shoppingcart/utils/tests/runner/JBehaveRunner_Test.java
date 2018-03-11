@@ -11,6 +11,7 @@ import org.jbehave.core.reporters.Format;
 import org.jbehave.core.reporters.StoryReporterBuilder;
 import org.jbehave.core.steps.InjectableStepsFactory;
 import org.jbehave.core.steps.InstanceStepsFactory;
+import org.jbehave.core.steps.ParameterControls;
 import org.jbehave.core.steps.Steps;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class JBehaveRunner_Test extends JUnitStories {
     @Override
     public Configuration configuration() {
         return new MostUsefulConfiguration()
+                .useParameterControls(new ParameterControls().useDelimiterNamedParameters(true))
                 .useStoryLoader(
                         new LoadFromClasspath(this.getClass().getClassLoader()))
                 .useStoryReporterBuilder(
@@ -34,7 +36,7 @@ public class JBehaveRunner_Test extends JUnitStories {
 
     @Override
     public InjectableStepsFactory stepsFactory() {
-        ArrayList<Steps> stepFileList = new ArrayList<Steps>();
+        ArrayList<Steps> stepFileList = new ArrayList<>();
         stepFileList.add(new LoadSteps());
 
         return new InstanceStepsFactory(configuration(), stepFileList);
