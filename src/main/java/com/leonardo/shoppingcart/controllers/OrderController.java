@@ -7,10 +7,13 @@ import com.leonardo.shoppingcart.entities.site.LineItem;
 import com.leonardo.shoppingcart.service.CustomerService;
 import com.leonardo.shoppingcart.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -29,6 +32,19 @@ public class OrderController extends SiteController {
     protected String getHeaderTitle()
     {
         return "Order";
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleResourceNotFoundException() {
+        return "home";
+    }
+
+    @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+    public ModelAndView handleError405(HttpServletRequest request, Exception e)   {
+        ModelAndView mav = new ModelAndView("error/405");
+        mav.addObject("exception", e);
+        return mav;
     }
 
     @RequestMapping(value="/orders", method=RequestMethod.POST)

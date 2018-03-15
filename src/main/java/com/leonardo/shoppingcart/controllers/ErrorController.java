@@ -4,8 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ErrorController extends SiteController
-{
+public class ErrorController extends SiteController {
     private static final String viewPrefix = "error/";
 
     @Override
@@ -19,8 +18,5 @@ public class ErrorController extends SiteController
     {
         return viewPrefix+"accessDenied";
     }
-
-    /* Set 404,500 */
-
 }
 

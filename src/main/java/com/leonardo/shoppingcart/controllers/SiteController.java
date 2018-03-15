@@ -14,6 +14,8 @@ public abstract class SiteController {
 
     protected abstract String getHeaderTitle();
 
+    public class ResourceNotFoundException extends RuntimeException { }
+
     @ModelAttribute("headerTitle")
     public String headerTitle()
     {
@@ -40,4 +42,6 @@ public abstract class SiteController {
         }
         return cart;
     }
+
+
 }
