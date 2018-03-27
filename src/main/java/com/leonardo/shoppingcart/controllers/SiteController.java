@@ -12,19 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 
 public abstract class SiteController {
 
-    @Autowired protected MessageSource messageSource;
-
     protected abstract String getHeaderTitle();
 
-    public String getMessage(String code)
-    {
-        return messageSource.getMessage(code, null, null);
-    }
-
-    public String getMessage(String code, String defaultMsg)
-    {
-        return messageSource.getMessage(code, null, defaultMsg, null);
-    }
+    public class ResourceNotFoundException extends RuntimeException { }
 
     @ModelAttribute("headerTitle")
     public String headerTitle()
@@ -33,27 +23,18 @@ public abstract class SiteController {
     }
 
     @ModelAttribute("authenticatedUser")
-    public AuthenticatedUser authenticatedUser(@AuthenticationPrincipal AuthenticatedUser authenticatedUser)
-    {
+    public AuthenticatedUser authenticatedUser(@AuthenticationPrincipal AuthenticatedUser authenticatedUser) {
         return authenticatedUser;
     }
 
-    public static AuthenticatedUser getCurrentUser()
-    {
+    public static AuthenticatedUser getCurrentUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof AuthenticatedUser) {
-            return ((AuthenticatedUser) principal);
-        }
+        if (principal instanceof AuthenticatedUser) return ((AuthenticatedUser) principal);
         return null;
     }
 
-    public static boolean isLoggedIn() {
-        return getCurrentUser() != null;
-    }
-
-    protected Cart getOrCreateCart(HttpServletRequest request)
-    {
-        Cart cart = null;
+    protected Cart getOrCreateCart(HttpServletRequest request) {
+        Cart cart;
         cart = (Cart) request.getSession().getAttribute("CART_KEY");
         if(cart == null){
             cart = new Cart();
@@ -61,5 +42,6 @@ public abstract class SiteController {
         }
         return cart;
     }
+
 
 }

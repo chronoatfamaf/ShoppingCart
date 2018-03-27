@@ -15,8 +15,7 @@ public class OrderService
 {
     @Autowired OrderRepository orderRepository;
 
-    public Order createOrder(Order order)
-    {
+    public Order createOrder(Order order) {
         order.setOrderNumber(String.valueOf(System.currentTimeMillis()));
         return orderRepository.save(order);
     }

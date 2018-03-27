@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -32,16 +33,14 @@ public class CustomerController extends SiteController
     }
 
     @RequestMapping(value="/register", method= RequestMethod.GET)
-    protected String registerForm(Model model)
-    {
-        model.addAttribute("customer", new Customer());
+    protected String registerForm(Model model) {
+        model.addAttribute("customer", Customer.builder());
         return "register";
     }
 
     @RequestMapping(value="/register", method=RequestMethod.POST)
     protected String register(@Valid @ModelAttribute("customer") Customer customer, BindingResult result,
-                              Model model, RedirectAttributes redirectAttributes)
-    {
+                              Model model, RedirectAttributes redirectAttributes) {
         customerValidator.validate(customer, result);
         if(result.hasErrors()){
             return "register";
@@ -56,8 +55,7 @@ public class CustomerController extends SiteController
     }
 
     @RequestMapping(value="/myAccount", method=RequestMethod.GET)
-    protected String myAccount(Model model)
-    {
+    protected String myAccount(Model model) {
         String email = getCurrentUser().getCustomer().getEmail();
         Customer customer = customerService.getCustomerByEmail(email);
         model.addAttribute("customer", customer);

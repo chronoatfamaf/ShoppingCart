@@ -1,7 +1,9 @@
 package com.leonardo.shoppingcart.entities;
 
-import com.leonardo.shoppingcart.entities.Address;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -11,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name="orders")
 @Data
+@Builder @AllArgsConstructor
 public class Order {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

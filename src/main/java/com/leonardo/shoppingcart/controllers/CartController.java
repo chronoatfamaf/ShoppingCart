@@ -58,8 +58,7 @@ public class CartController extends SiteController
 
     @RequestMapping(value="/cart/items", method=RequestMethod.PUT)
     @ResponseBody
-    public void updateCartItem(@RequestBody LineItem item, HttpServletRequest request, HttpServletResponse response)
-    {
+    public void updateCartItem(@RequestBody LineItem item, HttpServletRequest request, HttpServletResponse response) {
         Cart cart = getOrCreateCart(request);
         if (item.getQuantity() <= 0) {
             String pCode = item.getProduct().getCod();
@@ -71,16 +70,14 @@ public class CartController extends SiteController
 
     @RequestMapping(value="/cart/items/{cod}", method=RequestMethod.DELETE)
     @ResponseBody
-    public void removeCartItem(@PathVariable("cod") String cod, HttpServletRequest request)
-    {
+    public void removeCartItem(@PathVariable("cod") String cod, HttpServletRequest request) {
         Cart cart = getOrCreateCart(request);
         cart.removeItem(cod);
     }
 
     @RequestMapping(value="/cart", method=RequestMethod.DELETE)
     @ResponseBody
-    public void clearCart(HttpServletRequest request)
-    {
+    public void clearCart(HttpServletRequest request) {
         Cart cart = getOrCreateCart(request);
         cart.setItems(new ArrayList<LineItem>());
     }

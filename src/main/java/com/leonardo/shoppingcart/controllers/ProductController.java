@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -22,16 +23,14 @@ public class ProductController extends SiteController
     }
 
     @RequestMapping("/products/{pCode}")
-    public String product(@PathVariable String pCode, Model model)
-    {
+    public String product(@PathVariable String pCode, Model model) {
         Product product = catalogService.getProductByPCode(pCode);
         model.addAttribute("product", product);
         return "product";
     }
 
     @RequestMapping("/products")
-    public String searchProducts(@RequestParam(name="q", defaultValue="") String query, Model model)
-    {
+    public String searchProducts(@RequestParam(name="q", defaultValue="") String query, Model model) {
         List<Product> products = catalogService.searchProducts(query);
         model.addAttribute("products", products);
         return "products";

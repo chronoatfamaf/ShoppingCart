@@ -72,8 +72,7 @@ public class WebConfig extends WebMvcConfigurerAdapter
     }
 
     @Bean
-    public EmbeddedServletContainerFactory servletContainer()
-    {
+    public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory()
         {
             @Override

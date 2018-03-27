@@ -1,6 +1,6 @@
 package com.leonardo.shoppingcart.entities;
 
-import lombok.Data;
+import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -9,6 +9,7 @@ import java.util.Set;
 @Entity
 @Table(name="categories")
 @Data
+@Builder @AllArgsConstructor @NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
